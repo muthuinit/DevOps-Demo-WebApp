@@ -6,23 +6,6 @@ maven 'Maven3.6.3'
 }
 stages {
 
-stage('StaticCodeAnalysis') {
-
-environment {
-scannerhome = tool 'sonarqube'
-}
-
-steps {
-
-git 'https://github.com/muthuinit/DevOps-Demo-WebApp.git'
-
-withSonarQubeEnv('sonarqube') {
-  sh "${scannerHome}/bin/sonar-scanner -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.projectKey=WEBPOC:AVNCommunication -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.test.exclusions=**/test/java/servlet/createpage_junit.java -Dsonar.login=admin -Dsonar.password=admin"
-}
-}
-
-}
-
 stage('BuildWebApp') {
 steps {
 
